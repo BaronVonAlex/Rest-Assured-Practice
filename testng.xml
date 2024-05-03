@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Rest Assured Tests" parallel="tests" thread-count="1">
+
+    <test name="Rest_Assured">
+        <groups>
+            <run>
+                <include name=""/>
+            </run>
+        </groups>
+        <classes>
+            <class name=""/>
+        </classes>
+    </test>
+</suite>
