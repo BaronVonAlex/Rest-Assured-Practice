@@ -15,7 +15,7 @@ import org.testng.asserts.SoftAssert;
 import static ge.tbcacad.data.constants.Constants.*;
 import static org.hamcrest.Matchers.*;
 
-public class SwaggerTests {
+public class RestAssuredTests {
 
     protected static SwaggerSteps swaggerSteps;
     private SoftAssert softAssert;
