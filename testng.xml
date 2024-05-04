@@ -7,11 +7,11 @@
     <test name="Rest_Assured">
         <groups>
             <run>
-                <include name=""/>
+                <include name="RestAssured"/>
             </run>
         </groups>
         <classes>
-            <class name=""/>
+            <class name="ge.tbcacad.RestAssuredTests"/>
         </classes>
     </test>
 </suite>

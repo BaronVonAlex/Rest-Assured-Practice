@@ -6,8 +6,8 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SwaggerSteps {
     public static ValidatableResponse getListOfBooksValidation() {
@@ -41,7 +41,7 @@ public class SwaggerSteps {
                 .basePath("/v2/store/order")
                 .contentType(ContentType.JSON)
                 .body(reqBody)
-                .patch();
+                .post();
     }
 
     public static Response formPostReq(int petId, String name, String status) {
@@ -56,12 +56,10 @@ public class SwaggerSteps {
     }
 
     public static void printFirstAndSecondBookInfo(ValidatableResponse response) {
-        // Extract ISBN and author information
         JsonPath jsonPath = response.extract().jsonPath();
         List<String> isbns = jsonPath.getList("books.isbn");
         List<String> authors = jsonPath.getList("books.author");
 
-        // Print the extracted information
         if (isbns.size() >= 2 && authors.size() >= 2) {
             System.out.println("First Book ISBN: " + isbns.get(0));
             System.out.println("First Book Author: " + authors.get(0));
@@ -72,12 +70,9 @@ public class SwaggerSteps {
         }
     }
 
-    public static List<String> extractISBNFromResponse(ValidatableResponse response) {
-
+    public static List<Map<String, Object>> extractBooksFromResponse(ValidatableResponse response) {
         JsonPath jsonPath = response.extract().jsonPath();
-        List<String> isbnList = jsonPath.getList("books.isbn");
-        List<String> ISBNS = new ArrayList<>(isbnList);
-
-        return ISBNS;
+        List<Map<String, Object>> books = jsonPath.getList("books");
+        return books;
     }
 }
