@@ -75,4 +75,17 @@ public class SwaggerSteps {
         List<Map<String, Object>> books = jsonPath.getList("books");
         return books;
     }
+
+    public static Object[][] prepareBookData(List<Map<String, Object>> allBooks) {
+        Object[][] data = new Object[allBooks.size()][5];
+        for (int i = 0; i < allBooks.size(); i++) {
+            Map<String, Object> book = allBooks.get(i);
+            data[i][0] = i;
+            data[i][1] = book.get("title");
+            data[i][2] = book.get("isbn");
+            data[i][3] = book.get("publish_date");
+            data[i][4] = book.get("pages");
+        }
+        return data;
+    }
 }
