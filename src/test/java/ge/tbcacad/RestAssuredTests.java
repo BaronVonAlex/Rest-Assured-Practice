@@ -115,11 +115,11 @@ public class RestAssuredTests {
                 .when()
                 .get();
 
-        response.then().assertThat().body("docs", not(empty()));
-
-        response.then().assertThat().body("docs[0].title", equalTo("Harry Potter and the Philosopher's Stone"));
-        response.then().assertThat().body("docs[0].author_name[0]", equalTo("J. K. Rowling"));
-        response.then().assertThat().body("docs[0].place", hasItems("England", "Hogwarts School of Witchcraft and Wizardry", "Platform Nine and Three-quarters"));
+        response.then().assertThat()
+                .body("docs", not(empty()),
+                "docs[0].title", equalTo("Harry Potter and the Philosopher's Stone"),
+                        "docs[0].author_name[0]", equalTo("J. K. Rowling"),
+                        "docs[0].place", hasItems("England", "Hogwarts School of Witchcraft and Wizardry", "Platform Nine and Three-quarters"));
     }
 
     @AfterTest
