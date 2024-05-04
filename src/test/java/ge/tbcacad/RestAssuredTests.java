@@ -44,6 +44,8 @@ public class RestAssuredTests {
                         "isbn", equalTo(isbn),
                         "publish_date", equalTo(publishDate),
                         "pages", equalTo(pages));
+
+        softAssert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test
