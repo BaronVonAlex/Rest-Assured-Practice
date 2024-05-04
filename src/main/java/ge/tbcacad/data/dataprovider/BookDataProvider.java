@@ -11,9 +11,6 @@ import static ge.tbcacad.steps.swaggerSteps.SwaggerSteps.prepareBookData;
 
 
 public class BookDataProvider {
-
-    protected static SwaggerSteps swaggerSteps;
-
     @DataProvider(name = "bookDataProvider")
     public Object[][] bookDataProvider() {
         ValidatableResponse response = SwaggerSteps.getListOfBooksValidation();

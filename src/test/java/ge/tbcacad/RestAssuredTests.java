@@ -18,12 +18,9 @@ import static org.hamcrest.Matchers.*;
 public class RestAssuredTests {
 
     protected static SwaggerSteps swaggerSteps;
-    private SoftAssert softAssert;
-
     @BeforeTest
     public void setUp() {
         swaggerSteps = new SwaggerSteps();
-        softAssert = new SoftAssert();
     }
 
     @Test
@@ -39,21 +36,18 @@ public class RestAssuredTests {
     public void eachBookTest(int index, String title, String isbn, String publishDate, int pages) {
         Response response = SwaggerSteps.getBookByISBN(isbn);
 
-        response.then().assertThat()
+        response.then().statusCode(200).assertThat()
                 .body("title", equalTo(title),
                         "isbn", equalTo(isbn),
                         "publish_date", equalTo(publishDate),
                         "pages", equalTo(pages));
-
-        softAssert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test
     public void deleteTest() {
         Response response = SwaggerSteps.deleteBook("219812");
-        softAssert.assertEquals(response.getStatusCode(), 401, STATUS_CODE_ERR_MSG);
 
-        response.then().assertThat().body("message", equalTo("User not authorized!"));
+        response.then().statusCode(401).assertThat().body("message", equalTo("User not authorized!"));
     }
 
     @Test
@@ -79,7 +73,7 @@ public class RestAssuredTests {
         response.then().body(contains("type"), contains("message"));
 
         Response response1 = SwaggerSteps.formPostReq(112312, "112312", "d1");
-        softAssert.assertEquals(response1.getStatusCode(), 404, ERR_404_MSG);
+        response1.then().statusCode(404);
     }
 
     @Test
@@ -122,10 +116,5 @@ public class RestAssuredTests {
                 "docs[0].title", equalTo("Harry Potter and the Philosopher's Stone"),
                         "docs[0].author_name[0]", equalTo("J. K. Rowling"),
                         "docs[0].place", hasItems("England", "Hogwarts School of Witchcraft and Wizardry", "Platform Nine and Three-quarters"));
-    }
-
-    @AfterTest
-    private void tearDown() {
-        softAssert.assertAll();
     }
 }
