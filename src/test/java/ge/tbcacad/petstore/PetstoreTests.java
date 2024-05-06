@@ -7,7 +7,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static ge.tbcacad.data.constants.Constants.*;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.hamcrest.core.IsIterableContaining.hasItem;
 
 public class PetstoreTests {

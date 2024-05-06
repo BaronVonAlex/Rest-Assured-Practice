@@ -59,7 +59,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-    public Response uploadImage(int id){
+    public Response uploadImage(int id) {
         File file = new File("9eb83d4058c144401c5ea2596e658dbf.png");
 
         return RestAssured.given()
