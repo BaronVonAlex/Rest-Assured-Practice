@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static ge.tbcacad.data.constants.Constants.*;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsIterableContaining.hasItem;
 
 public class PetstoreTests {
@@ -57,5 +57,22 @@ public class PetstoreTests {
                 .body(STATUS, equalTo(response.then().extract().path(STATUS)));
 
         responsePet.prettyPrint();
+    }
+
+    @Test(priority = 3)
+    public void uploadPetPicture() {
+        Response responseInitial = petstoreSteps.addNewPet(PetstoreRequestBody.returnPetstoreReqBody());
+
+        int id = responseInitial.then().extract().path(ID);
+
+        Response response = petstoreSteps.uploadImage(id);
+
+        response.prettyPrint();
+
+        response.then()
+                .body(CODE, equalTo(200))
+                .body(MESSAGE, stringContainsInOrder("37886"))
+                .body(MESSAGE, stringContainsInOrder("Baron"))
+                .body(MESSAGE, stringContainsInOrder("9eb83d4058c144401c5ea2596e658dbf"));
     }
 }

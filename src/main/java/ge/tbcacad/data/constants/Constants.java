@@ -32,4 +32,8 @@ public class Constants {
     public static final String TAGS_NAME = "tags.name";
     public static final String STATUS = "status";
     public static final String ID = "id";
+    public static final String CATEGORY = "category";
+    public static final String TAGS = "tags";
+    public static final String CODE = "code";
+    public static final String MESSAGE = "message";
 }

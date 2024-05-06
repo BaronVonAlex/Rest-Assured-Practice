@@ -5,6 +5,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 
+import java.io.File;
+
 import static ge.tbcacad.data.constants.Constants.petstoreBaseUrl;
 
 public class PetstoreSteps {
@@ -52,6 +54,22 @@ public class PetstoreSteps {
                 .body(requestBody.toString())
                 .when()
                 .put("/v2/pet")
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response uploadImage(int id){
+        File file = new File("9eb83d4058c144401c5ea2596e658dbf.png");
+
+        return RestAssured.given()
+                .baseUri(petstoreBaseUrl)
+                .accept(ContentType.JSON)
+                .contentType(ContentType.MULTIPART)
+                .multiPart("file", file, "image/img")
+                .formParam("additionalMetadata", "Baron")
+                .when()
+                .post("/v2/pet/" + id + "/uploadImage")
                 .then()
                 .extract()
                 .response();
