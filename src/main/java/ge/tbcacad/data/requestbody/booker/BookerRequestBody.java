@@ -8,8 +8,8 @@ public class BookerRequestBody {
         Faker faker = new Faker();
 
         return new JSONObject()
-                .put("firstname", faker.name().firstName())
-                .put("lastname", faker.name().lastName())
+                .put("firstname", "Alex")
+                .put("lastname", "Baron")
                 .put("totalprice", faker.number().randomNumber())
                 .put("depositpaid", true)
                 .put("bookingdates", new JSONObject()

@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.greaterThan;
 
 public class BookstoreTests {
 
-    protected BooksSteps booksSteps;
+    protected static BooksSteps booksSteps;
 
     @BeforeTest
     public void setUp() {
