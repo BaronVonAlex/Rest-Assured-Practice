@@ -12,7 +12,13 @@ public class Constants {
                           "complete": "true"
                         }
                     """;
+    public static final String bookerBaseUrl = "https://restful-booker.herokuapp.com";
+    public static final String bookstoreBaseUrl = "https://bookstore.toolsqa.com";
 
-    public static final String STATUS_CODE_ERR_MSG = "Status code is invalid, should be 401 - Unauthorized";
-    public static final String ERR_404_MSG = "Status code isn't 404";
+    public static final String BOOK_ONE_EXP_AUTH = "Richard E. Silverman";
+    public static final String BOOK_TWO_EXP_AUTH = "Addy Osmani";
+
+    public static final long bookingId = 12;
+    public static final String username = "admin";
+    public static final String password = "password123";
 }

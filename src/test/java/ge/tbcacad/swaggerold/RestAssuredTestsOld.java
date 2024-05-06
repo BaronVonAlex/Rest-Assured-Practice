@@ -1,4 +1,4 @@
-package ge.tbcacad;
+package ge.tbcacad.swaggerold;
 
 import ge.tbcacad.data.dataprovider.BookDataProvider;
 import ge.tbcacad.steps.swaggerSteps.SwaggerSteps;
@@ -7,17 +7,16 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.hamcrest.Matchers;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import static ge.tbcacad.data.constants.Constants.*;
+import static ge.tbcacad.data.constants.Constants.JSON_RESPONSE_BODY;
 import static org.hamcrest.Matchers.*;
 
-public class RestAssuredTests {
+public class RestAssuredTestsOld {
 
     protected static SwaggerSteps swaggerSteps;
+
     @BeforeTest
     public void setUp() {
         swaggerSteps = new SwaggerSteps();
@@ -113,7 +112,7 @@ public class RestAssuredTests {
 
         response.then().assertThat()
                 .body("docs", not(empty()),
-                "docs[0].title", equalTo("Harry Potter and the Philosopher's Stone"),
+                        "docs[0].title", equalTo("Harry Potter and the Philosopher's Stone"),
                         "docs[0].author_name[0]", equalTo("J. K. Rowling"),
                         "docs[0].place", hasItems("England", "Hogwarts School of Witchcraft and Wizardry", "Platform Nine and Three-quarters"));
     }
