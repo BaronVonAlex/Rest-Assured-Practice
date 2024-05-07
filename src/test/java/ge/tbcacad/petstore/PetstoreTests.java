@@ -72,8 +72,8 @@ public class PetstoreTests {
 
         response.then()
                 .body(CODE, equalTo(200))
-                .body(MESSAGE, stringContainsInOrder("37886"))
-                .body(MESSAGE, stringContainsInOrder("Baron"))
-                .body(MESSAGE, stringContainsInOrder("9eb83d4058c144401c5ea2596e658dbf"));
+                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_BYTES))
+                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_NAME))
+                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_FILENAME));
     }
 }

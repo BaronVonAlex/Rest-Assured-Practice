@@ -5,8 +5,7 @@ import io.restassured.response.Response;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static ge.tbcacad.data.constants.Constants.BOOK_ONE_EXP_AUTH;
-import static ge.tbcacad.data.constants.Constants.BOOK_TWO_EXP_AUTH;
+import static ge.tbcacad.data.constants.Constants.*;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 
@@ -24,7 +23,7 @@ public class BookstoreTests {
         Response response = BooksSteps.getAllBooks();
 
         response.then()
-                .body("books.pages", greaterThan(1000));
+                .body(BOOK_PAGES, greaterThan(1000));
     }
 
     @Test

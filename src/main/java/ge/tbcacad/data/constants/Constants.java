@@ -31,9 +31,14 @@ public class Constants {
     public static final String TAGS_ID = "tags.id";
     public static final String TAGS_NAME = "tags.name";
     public static final String STATUS = "status";
+    public static final String BOOK_PAGES = "books.pages";
     public static final String ID = "id";
     public static final String CATEGORY = "category";
     public static final String TAGS = "tags";
     public static final String CODE = "code";
     public static final String MESSAGE = "message";
+
+    public static final String UPLOAD_EXP_BYTES = "37886";
+    public static final String UPLOAD_EXP_NAME = "Baron";
+    public static final String UPLOAD_EXP_FILENAME = "9eb83d4058c144401c5ea2596e658dbf";
 }
