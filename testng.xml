@@ -5,13 +5,8 @@
 <suite name="Rest Assured Tests" parallel="tests" thread-count="1">
 
     <test name="Rest_Assured">
-        <groups>
-            <run>
-                <include name="RestAssured"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="ge.tbcacad.RestAssuredTests"/>
-        </classes>
+        <packages>
+            <package name="ge.tbcacad.*"></package>
+        </packages>
     </test>
 </suite>
