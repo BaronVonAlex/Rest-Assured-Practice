@@ -1,13 +1,15 @@
 package ge.tbcacad.bookstore;
 
+import ge.tbcacad.enums.BookAuthor;
+import ge.tbcacad.models.bookstore.response.BookstoreResponse;
 import ge.tbcacad.steps.bookstore.BooksSteps;
-import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static ge.tbcacad.data.constants.Constants.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThan;
+import static ge.tbcacad.data.constants.Constants.BOOK_ASRT_MSG_1;
+import static ge.tbcacad.data.constants.Constants.BOOK_ASRT_MSG_2;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BookstoreTests {
 
@@ -20,18 +22,18 @@ public class BookstoreTests {
 
     @Test
     public void allBooksWithinPageValue() {
-        Response response = BooksSteps.getAllBooks();
+        BookstoreResponse response = BooksSteps.getAllBooks();
 
-        response.then()
-                .body(BOOK_PAGES, greaterThan(1000));
+        response.getBooks().forEach(booksItem -> {
+            assertThat(BOOK_ASRT_MSG_1 + booksItem.getIsbn() + BOOK_ASRT_MSG_2, booksItem.getPages(), Matchers.greaterThan(1000));
+        });
     }
 
     @Test
     public void booksAuthors() {
-        Response response = BooksSteps.getAllBooks();
+        BookstoreResponse response = BooksSteps.getAllBooks();
 
-        response.then()
-                .body("books[0].author", equalTo(BOOK_ONE_EXP_AUTH))
-                .body("books[1].author", equalTo(BOOK_TWO_EXP_AUTH));
+        assertThat(response.getBooks().get(0).getAuthor(), Matchers.is(BookAuthor.BOOK_AUTHOR_ONE.toString()));
+        assertThat(response.getBooks().get(1).getAuthor(), Matchers.is(BookAuthor.BOOK_AUTHOR_TWO.toString()));
     }
 }

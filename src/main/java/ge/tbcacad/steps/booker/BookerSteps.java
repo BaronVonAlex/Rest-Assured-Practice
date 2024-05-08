@@ -30,7 +30,7 @@ public class BookerSteps {
                 .getToken();
     }
 
-    public Response updateBooking(long bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
+    public Response partialUpdateBooking(long bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
                 .contentType(ContentType.JSON)
@@ -38,8 +38,36 @@ public class BookerSteps {
                 .header("Authorization", "Basic " + authToken)
                 .body(requestBody)
                 .when()
-                .put("/booking/" + bookingId)
+                .patch("/booking/" + bookingId)
                 .then()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public Response createBooking(BookerRequest requestBody, String baseUrl, String authToken) {
+        return RestAssured.given()
+                .baseUri(baseUrl)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Basic " + authToken)
+                .body(requestBody)
+                .when()
+                .post("/booking")
+                .then()
+                .statusCode(200)
+                .extract().response();
+    }
+
+    public Response deleteBooking(long bookingId, String baseUrl, String authToken) {
+        return RestAssured.given()
+                .baseUri(baseUrl)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Basic " + authToken)
+                .when()
+                .delete("/booking/" + bookingId)
+                .then()
+                .statusCode(200)
                 .extract().response();
     }
 }

@@ -1,21 +1,21 @@
 package ge.tbcacad.steps.petstore;
 
+import ge.tbcacad.models.petstore.request.AddNewPetRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.json.JSONObject;
 
 import java.io.File;
 
 import static ge.tbcacad.data.constants.Constants.petstoreBaseUrl;
 
 public class PetstoreSteps {
-    public Response addNewPet(JSONObject requestBody) {
+    public Response addNewPet(AddNewPetRequest requestBody) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .body(requestBody.toString())
+                .body(requestBody)
                 .when()
                 .post("/v2/pet")
                 .then()
@@ -23,7 +23,21 @@ public class PetstoreSteps {
                 .response();
     }
 
-    public Response findPets(String status) {
+
+    public Response updateExistingPet(AddNewPetRequest requestBody) {
+        return RestAssured.given()
+                .baseUri(petstoreBaseUrl)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .put("/v2/pet")
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response findPetsByStatus(String status) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
                 .queryParam("status", status)
@@ -41,19 +55,6 @@ public class PetstoreSteps {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .get("v2/pet/" + id)
-                .then()
-                .extract()
-                .response();
-    }
-
-    public Response updateExistingPet(JSONObject requestBody) {
-        return RestAssured.given()
-                .baseUri(petstoreBaseUrl)
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .body(requestBody.toString())
-                .when()
-                .put("/v2/pet")
                 .then()
                 .extract()
                 .response();

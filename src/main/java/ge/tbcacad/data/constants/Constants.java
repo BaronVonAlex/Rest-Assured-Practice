@@ -41,4 +41,9 @@ public class Constants {
     public static final String UPLOAD_EXP_BYTES = "37886";
     public static final String UPLOAD_EXP_NAME = "Baron";
     public static final String UPLOAD_EXP_FILENAME = "9eb83d4058c144401c5ea2596e658dbf";
+
+    public static final String BOOK_ASRT_MSG_1 = "Book with ID : ";
+    public static final String BOOK_ASRT_MSG_2 = " Has page value less than 1000.";
+    public static final String BOOKER_EXP_NAME = "Sally";
+    public static final String ERGAST_URL = "http://ergast.com";
 }
