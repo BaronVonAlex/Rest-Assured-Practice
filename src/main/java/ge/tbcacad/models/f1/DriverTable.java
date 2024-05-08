@@ -1,38 +1,39 @@
 package ge.tbcacad.models.f1;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DriverTable{
+import java.util.List;
 
-	@JsonProperty("Drivers")
-	private List<DriversItem> drivers;
+public class DriverTable {
 
-	@JsonProperty("season")
-	private String season;
+    @JsonProperty("Drivers")
+    private List<DriversItem> drivers;
 
-	public void setDrivers(List<DriversItem> drivers){
-		this.drivers = drivers;
-	}
+    @JsonProperty("season")
+    private String season;
 
-	public List<DriversItem> getDrivers(){
-		return drivers;
-	}
+    public List<DriversItem> getDrivers() {
+        return drivers;
+    }
 
-	public void setSeason(String season){
-		this.season = season;
-	}
+    public void setDrivers(List<DriversItem> drivers) {
+        this.drivers = drivers;
+    }
 
-	public String getSeason(){
-		return season;
-	}
+    public String getSeason() {
+        return season;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"DriverTable{" + 
-			"drivers = '" + drivers + '\'' + 
-			",season = '" + season + '\'' + 
-			"}";
-		}
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "DriverTable{" +
+                        "drivers = '" + drivers + '\'' +
+                        ",season = '" + season + '\'' +
+                        "}";
+    }
 }

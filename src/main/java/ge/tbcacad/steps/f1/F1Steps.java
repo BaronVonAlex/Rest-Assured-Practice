@@ -5,7 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class F1Steps {
-    public Response getF1Drivers(String baseUrl){
+    public Response getF1Drivers(String baseUrl) {
         return RestAssured.given()
                 .baseUri(baseUrl)
                 .contentType(ContentType.JSON)
