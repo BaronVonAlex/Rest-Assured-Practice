@@ -3,7 +3,6 @@ package ge.tbcacad.steps.booker;
 import ge.tbcacad.models.booker.request.AuthTokenRequest;
 import ge.tbcacad.models.booker.request.BookerRequest;
 import ge.tbcacad.models.booker.response.AuthTokenResponse;
-import ge.tbcacad.models.booker.response.Booking;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
