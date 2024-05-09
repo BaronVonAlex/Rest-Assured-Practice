@@ -2,7 +2,8 @@ package ge.tbcacad.booker;
 
 import ge.tbcacad.data.requestbody.booker.BookerRequestBody;
 import ge.tbcacad.models.booker.request.BookerRequest;
-import ge.tbcacad.models.booker.response.BookerResponse;
+import ge.tbcacad.models.booker.response.BookerResponseOne;
+import ge.tbcacad.models.booker.response.Booking;
 import ge.tbcacad.steps.booker.BookerSteps;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
@@ -26,9 +27,12 @@ public class BookerTests {
     @Test(priority = 1)
     public void createBooking() {
         Response request = bookerSteps.createBooking(BookerRequestBody.createBooker(), bookerBaseUrl, authToken);
-        System.out.println(request.then().extract().as(BookerResponse.class).getFirstname());
-        BookerResponse bookerResponse = request.as(BookerResponse.class);
-        assertThat(bookerResponse.getFirstname(), Matchers.containsString(BOOKER_EXP_NAME));
+
+        BookerResponseOne bookerResponse = request.as(BookerResponseOne.class);
+
+        Booking booking = bookerResponse.getBooking();
+
+        assertThat(booking.getFirstname(), Matchers.containsString(BOOKER_EXP_NAME));
     }
 
     @Test(priority = 2)
@@ -42,9 +46,11 @@ public class BookerTests {
 
     @Test(priority = 3)
     public void deleteBooking() {
+        System.out.println(authToken);
         Response response = bookerSteps.deleteBooking(bookingId, bookerBaseUrl, authToken);
         response.then().log().ifStatusCodeIsEqualTo(200);
-        BookerResponse bookerResponse = response.as(BookerResponse.class);
-        assertThat(bookerResponse.getFirstname(), Matchers.emptyOrNullString());
+        BookerResponseOne bookerResponse = response.as(BookerResponseOne.class);
+        Booking booking = bookerResponse.getBooking();
+        assertThat(booking.getFirstname(), Matchers.emptyOrNullString());
     }
 }

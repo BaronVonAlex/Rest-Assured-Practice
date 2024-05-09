@@ -24,7 +24,7 @@ public class FormulaOneTests {
     }
 
     @Test
-    public void f1Test() throws IOException {
+    public void f1Test() {
         Response response = f1Steps.getF1Drivers(ERGAST_URL);
 
         DriversItem driver = JsonPath.from(response.getBody().asString()).getObject("MRData.DriverTable.Drivers[0]", DriversItem.class);

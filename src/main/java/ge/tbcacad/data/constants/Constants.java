@@ -19,7 +19,7 @@ public class Constants {
     public static final String BOOK_ONE_EXP_AUTH = "Richard E. Silverman";
     public static final String BOOK_TWO_EXP_AUTH = "Addy Osmani";
 
-    public static final long bookingId = 12;
+    public static final int bookingId = 3609;
     public static final String username = "admin";
     public static final String password = "password123";
 

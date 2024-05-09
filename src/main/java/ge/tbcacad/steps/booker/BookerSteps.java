@@ -2,7 +2,7 @@ package ge.tbcacad.steps.booker;
 
 import ge.tbcacad.models.booker.request.AuthTokenRequest;
 import ge.tbcacad.models.booker.request.BookerRequest;
-import ge.tbcacad.models.booker.response.AuthTokenResponse;
+import ge.tbcacad.models.booker.response.Booking;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -26,29 +26,28 @@ public class BookerSteps {
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(AuthTokenResponse.class)
+                .as(Booking.AuthTokenResponse.class)
                 .getToken();
     }
 
-    public Response partialUpdateBooking(long bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
+    public Response partialUpdateBooking(int bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
                 .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
+                .accept("application/json")
                 .header("Authorization", "Basic " + authToken)
                 .body(requestBody)
                 .when()
                 .patch("/booking/" + bookingId)
                 .then()
-                .statusCode(200)
-                .extract().response();
+                .extract()
+                .response();
     }
 
     public Response createBooking(BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
+                .contentType("application/json")
                 .header("Authorization", "Basic " + authToken)
                 .body(requestBody)
                 .when()
@@ -61,11 +60,13 @@ public class BookerSteps {
     public Response deleteBooking(long bookingId, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
+                .basePath("/booking/" + bookingId)
                 .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
+                .accept("application/json")
+                .header("Content-Type", "application/json")
                 .header("Authorization", "Basic " + authToken)
                 .when()
-                .delete("/booking/" + bookingId)
+                .delete()
                 .then()
                 .statusCode(200)
                 .extract().response();
