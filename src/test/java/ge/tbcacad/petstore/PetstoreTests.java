@@ -1,14 +1,18 @@
 package ge.tbcacad.petstore;
 
 import ge.tbcacad.data.requestbody.petstore.PetstoreRequestBody;
+import ge.tbcacad.enums.StatusAvailability;
+import ge.tbcacad.models.petstore.response.AddNewPetResponse;
+import ge.tbcacad.models.petstore.response.PetImageUploadResponse;
 import ge.tbcacad.steps.petstore.PetstoreSteps;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static ge.tbcacad.data.constants.Constants.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.hamcrest.core.IsIterableContaining.hasItem;
 
 public class PetstoreTests {
@@ -22,58 +26,52 @@ public class PetstoreTests {
 
     @Test(priority = 1)
     public void validateRequest() {
-        Response response = petstoreSteps.addNewPet(PetstoreRequestBody.returnPetstoreReqBody());
-        response.then().statusCode(200);
+        Response response = petstoreSteps.addNewPet(PetstoreRequestBody.addAndReturnNewPet());
 
-        int id = response.then().extract().path(ID);
+        assertThat(response.getStatusCode(), equalTo(200));
 
-        Response responseByStatus = petstoreSteps.findPets(AVAILABLE_STATUS);
+        int id = Integer.parseInt(response.body().as(AddNewPetResponse.class).getId().toString());
 
-        responseByStatus.then().body(ID, hasItem(id));
+        Response responseByStatus = petstoreSteps.findPetsByStatus(StatusAvailability.STATUS_AVAILABLE.toString());
 
-        Response responseById = petstoreSteps.findPetById(id);
-        responseById.then()
-                .body(ID, equalTo(id))
-                .body(CATEGORY_ID, equalTo(response.then().extract().path(CATEGORY_ID)))
-                .body(CATEGORY_NAME, equalTo(response.then().extract().path(CATEGORY_NAME)))
-                .body(PET_NAME, equalTo(response.then().extract().path(PET_NAME)))
-                .body(PHOTO_URLS, equalTo(response.then().extract().path(PHOTO_URLS)))
-                .body(TAGS_ID, equalTo(response.then().extract().path(TAGS_ID)))
-                .body(TAGS_NAME, equalTo(response.then().extract().path(TAGS_NAME)))
-                .body(STATUS, equalTo(response.then().extract().path(STATUS)));
+        responseByStatus.then().assertThat().body(ID, hasItem(id));
 
-        responseById.prettyPrint();
+        AddNewPetResponse responseById = petstoreSteps.findPetById(id).as(AddNewPetResponse.class);
+        AddNewPetResponse expResponse = response.as(AddNewPetResponse.class);
+
+        assertThat(responseById.getId(), equalTo(expResponse.getId()));
+        assertThat(responseById.getCategory().getId(), equalTo(expResponse.getCategory().getId()));
+        assertThat(responseById.getCategory().getName(), equalTo(expResponse.getCategory().getName()));
+        assertThat(responseById.getName(), equalTo(expResponse.getName()));
+        assertThat(responseById.getPhotoUrls(), equalTo(expResponse.getPhotoUrls()));
+        assertThat(responseById.getTags().get(0).getId(), equalTo(expResponse.getTags().get(0).getId()));
+        assertThat(responseById.getTags().get(0).getName(), equalTo(expResponse.getTags().get(0).getName()));
+        assertThat(responseById.getStatus(), equalTo(expResponse.getStatus()));
     }
 
     @Test(priority = 2)
     public void updateExistingPet() {
-        Response response = petstoreSteps.updateExistingPet(PetstoreRequestBody.updatedPetReqBody());
+        Response response = petstoreSteps.updateExistingPet(PetstoreRequestBody.updatePet());
 
-        int id = response.then().extract().path(ID);
+        int id = Integer.parseInt(response.body().as(AddNewPetResponse.class).getId().toString());
 
-        Response responsePet = petstoreSteps.findPetById(id);
+        AddNewPetResponse responseDeserialized = response.as(AddNewPetResponse.class);
+        AddNewPetResponse responsePet = petstoreSteps.findPetById(id).as(AddNewPetResponse.class);
 
-        responsePet.then()
-                .body(PET_NAME, equalTo(response.then().extract().path(PET_NAME)))
-                .body(STATUS, equalTo(response.then().extract().path(STATUS)));
-
-        responsePet.prettyPrint();
+        assertThat(responsePet.getName(), equalTo(responseDeserialized.getName()));
+        assertThat(responsePet.getStatus(), equalTo(responseDeserialized.getStatus()));
     }
 
     @Test(priority = 3)
     public void uploadPetPicture() {
-        Response responseInitial = petstoreSteps.addNewPet(PetstoreRequestBody.returnPetstoreReqBody());
+        Response responseInitial = petstoreSteps.addNewPet(PetstoreRequestBody.addAndReturnNewPet());
 
-        int id = responseInitial.then().extract().path(ID);
+        int id = Integer.parseInt(responseInitial.body().as(AddNewPetResponse.class).getId().toString());
 
-        Response response = petstoreSteps.uploadImage(id);
+        PetImageUploadResponse uploadResponse = petstoreSteps.uploadImage(id).as(PetImageUploadResponse.class);
 
-        response.prettyPrint();
-
-        response.then()
-                .body(CODE, equalTo(200))
-                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_BYTES))
-                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_NAME))
-                .body(MESSAGE, stringContainsInOrder(UPLOAD_EXP_FILENAME));
+        assertThat(uploadResponse.getMessage(), Matchers.containsString(UPLOAD_EXP_BYTES));
+        assertThat(uploadResponse.getMessage(), Matchers.containsString(UPLOAD_EXP_NAME));
+        assertThat(uploadResponse.getMessage(), Matchers.containsString(UPLOAD_EXP_FILENAME));
     }
 }

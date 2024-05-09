@@ -1,54 +1,66 @@
 package ge.tbcacad.data.requestbody.petstore;
 
 import com.github.javafaker.Faker;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import ge.tbcacad.models.petstore.request.AddNewPetRequest;
+import ge.tbcacad.models.petstore.request.Category;
+import ge.tbcacad.models.petstore.request.TagsItem;
 
-import static ge.tbcacad.data.constants.Constants.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PetstoreRequestBody {
     static Faker faker = new Faker();
     public static int id = faker.number().numberBetween(1, 10000);
 
-    public static JSONObject returnPetstoreReqBody() {
-        JSONArray photoUrls = new JSONArray();
-        photoUrls.put(faker.internet().url());
+    public static AddNewPetRequest addAndReturnNewPet() {
+        AddNewPetRequest requestBody = new AddNewPetRequest();
 
-        JSONArray tags = new JSONArray();
-        JSONObject tag = new JSONObject()
-                .put(ID, id)
-                .put(PET_NAME, "Veigar");
-        tags.put(tag);
+        List<String> photoUrls = new ArrayList<>();
+        photoUrls.add(faker.internet().url());
 
-        return new JSONObject()
-                .put(ID, id)
-                .put(CATEGORY, new JSONObject()
-                        .put(ID, id)
-                        .put(PET_NAME, "Baron"))
-                .put(PET_NAME, "Alex")
-                .put(PHOTO_URLS, photoUrls)
-                .put(TAGS, tags)
-                .put(STATUS, "available");
+        Category category = new Category();
+        category.setId(id);
+        category.setName("Doggie");
+
+        List<TagsItem> tags = new ArrayList<>();
+        TagsItem tag = new TagsItem();
+        tag.setName("Huskie");
+        tag.setId(id);
+        tags.add(tag);
+
+        requestBody.setPhotoUrls(photoUrls);
+        requestBody.setCategory(category);
+        requestBody.setTags(tags);
+        requestBody.setName("Rex");
+        requestBody.setId(id);
+        requestBody.setStatus("available");
+
+        return requestBody;
     }
 
-    public static JSONObject updatedPetReqBody() {
-        JSONArray photoUrls = new JSONArray();
-        photoUrls.put(faker.internet().url());
+    public static AddNewPetRequest updatePet() {
+        AddNewPetRequest requestBody = new AddNewPetRequest();
 
-        JSONArray tags = new JSONArray();
-        JSONObject tag = new JSONObject()
-                .put(ID, id)
-                .put(PET_NAME, "Veigar");
-        tags.put(tag);
+        List<String> photoUrls = new ArrayList<>();
+        photoUrls.add(faker.internet().url());
 
-        return new JSONObject()
-                .put(ID, id)
-                .put(CATEGORY, new JSONObject()
-                        .put(ID, id)
-                        .put(PET_NAME, "Jason"))
-                .put(PET_NAME, "Alex")
-                .put(PHOTO_URLS, photoUrls)
-                .put(TAGS, tags)
-                .put(STATUS, "sold");
+        Category category = new Category();
+        category.setId(id);
+        category.setName("Doggie");
+
+        List<TagsItem> tags = new ArrayList<>();
+        TagsItem tag = new TagsItem();
+        tag.setName("Huskie");
+        tag.setId(id);
+        tags.add(tag);
+
+        requestBody.setPhotoUrls(photoUrls);
+        requestBody.setCategory(category);
+        requestBody.setTags(tags);
+        requestBody.setName("Mutant");
+        requestBody.setId(id);
+        requestBody.setStatus("sold");
+
+        return requestBody;
     }
 }
