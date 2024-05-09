@@ -9,8 +9,6 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static ge.tbcacad.data.constants.Constants.ERGAST_URL;
 import static org.hamcrest.MatcherAssert.assertThat;
 
