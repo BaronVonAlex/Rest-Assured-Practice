@@ -46,4 +46,9 @@ public class Constants {
     public static final String BOOK_ASRT_MSG_2 = " Has page value less than 1000.";
     public static final String BOOKER_EXP_NAME = "Sally";
     public static final String ERGAST_URL = "http://ergast.com";
+    public static final String PLANET_NAME = "Kamino";
+    public static final String PLANET_DIAMETER = "19720";
+    public static final String PLANET_GRAVITY = "1 standard";
+    public static final String PLANET_SUR_WATER = "100";
+    public static final String PLANET_ORB_PERIOD = "463";
 }
