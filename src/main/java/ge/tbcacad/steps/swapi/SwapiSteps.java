@@ -2,6 +2,7 @@ package ge.tbcacad.steps.swapi;
 
 import ge.tbcacad.data.models.swapi.responses.Planet;
 import ge.tbcacad.data.models.swapi.responses.ResultsItem;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -11,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SwapiSteps {
+    @Step
     public Response getPlanets() {
         return RestAssured.given()
                 .baseUri("https://swapi.dev/api/planets/?format=json")
@@ -22,11 +24,11 @@ public class SwapiSteps {
                 .extract()
                 .response();
     }
-
+    @Step
     public Planet getPlanet(Response response) {
         return response.as(Planet.class);
     }
-
+    @Step
     public ResultsItem[] getThreeMostRecent(Planet planets) {
         if (planets != null && planets.results() != null && !planets.results().isEmpty()) {
 
@@ -39,14 +41,14 @@ public class SwapiSteps {
             return new ResultsItem[0];
         }
     }
-
+    @Step
     public void printPlanetDetails(ResultsItem[] planets) {
         for (ResultsItem planet : planets) {
             System.out.println("Name: " + planet.name());
             System.out.println("Creation Date: " + planet.created());
         }
     }
-
+    @Step
     public ResultsItem getTopOneByRotation(Response response) {
         Planet planet = getPlanet(response);
 
@@ -54,7 +56,7 @@ public class SwapiSteps {
                 .max(Comparator.comparing(ResultsItem::rotationPeriod))
                 .orElse(null); // Handle case where list is empty
     }
-
+    @Step
     public String getFirstResidentLink(ResultsItem planet) {
         List<String> residentLinks = planet.residents();
 
@@ -64,7 +66,7 @@ public class SwapiSteps {
             return null;
         }
     }
-
+    @Step
     public void redirectToUrl(String url) {
         if (url != null) {
             Response response = RestAssured.given()

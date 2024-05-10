@@ -51,4 +51,7 @@ public class Constants {
     public static final String PLANET_GRAVITY = "1 standard";
     public static final String PLANET_SUR_WATER = "100";
     public static final String PLANET_ORB_PERIOD = "463";
+    public static final Long ORDER_ID_EXP_VALUE = 8123L;
+    public static final String ODER_DATE_EXP_VALUE = "2021-05-10T15:04:37.534";
+    public static final int ORDER_QUANTITIY_EXP_VALUE = 0;
 }

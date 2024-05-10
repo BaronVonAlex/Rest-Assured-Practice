@@ -1,6 +1,7 @@
 package ge.tbcacad.steps.petstore;
 
 import ge.tbcacad.data.models.petstore.request.AddNewPetRequest;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -10,6 +11,7 @@ import java.io.File;
 import static ge.tbcacad.data.constants.Constants.petstoreBaseUrl;
 
 public class PetstoreSteps {
+    @Step
     public Response addNewPet(AddNewPetRequest requestBody) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -23,7 +25,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-
+    @Step
     public Response updateExistingPet(AddNewPetRequest requestBody) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -36,7 +38,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
-
+    @Step
     public Response findPetsByStatus(String status) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -48,7 +50,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
-
+    @Step
     public Response findPetById(int id) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -59,7 +61,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
-
+    @Step
     public Response uploadImage(int id) {
         File file = new File("9eb83d4058c144401c5ea2596e658dbf.png");
 

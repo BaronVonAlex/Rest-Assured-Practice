@@ -3,6 +3,7 @@ package ge.tbcacad.steps.booker;
 import ge.tbcacad.data.models.booker.request.AuthTokenRequest;
 import ge.tbcacad.data.models.booker.request.BookerRequest;
 import ge.tbcacad.data.models.booker.response.AuthTokenResponse;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -10,7 +11,7 @@ import io.restassured.response.Response;
 import static ge.tbcacad.data.constants.Constants.bookerBaseUrl;
 
 public class BookerSteps {
-
+    @Step
     public String createAuthToken(String username, String password) {
         AuthTokenRequest requestBody = new AuthTokenRequest();
         requestBody.setUsername(username);
@@ -29,7 +30,7 @@ public class BookerSteps {
                 .as(AuthTokenResponse.class)
                 .getToken();
     }
-
+    @Step
     public Response partialUpdateBooking(int bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
@@ -43,7 +44,7 @@ public class BookerSteps {
                 .extract()
                 .response();
     }
-
+    @Step
     public Response createBooking(BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
@@ -56,7 +57,7 @@ public class BookerSteps {
                 .statusCode(200)
                 .extract().response();
     }
-
+    @Step
     public Response deleteBooking(long bookingId, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)

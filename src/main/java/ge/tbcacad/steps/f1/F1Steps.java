@@ -1,10 +1,12 @@
 package ge.tbcacad.steps.f1;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class F1Steps {
+    @Step
     public Response getF1Drivers(String baseUrl) {
         return RestAssured.given()
                 .baseUri(baseUrl)
