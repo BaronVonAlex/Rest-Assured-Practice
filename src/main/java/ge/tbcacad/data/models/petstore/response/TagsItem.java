@@ -1,8 +1,8 @@
-package ge.tbcacad.models.petstore.response;
+package ge.tbcacad.data.models.petstore.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Category {
+public class TagsItem {
 
     @JsonProperty("name")
     private String name;
@@ -29,7 +29,7 @@ public class Category {
     @Override
     public String toString() {
         return
-                "Category{" +
+                "TagsItem{" +
                         "name = '" + name + '\'' +
                         ",id = '" + id + '\'' +
                         "}";

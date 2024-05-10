@@ -1,10 +1,12 @@
 package ge.tbcacad.petstore;
 
+import ge.tbcacad.data.models.petstore.response.AddNewPetResponse;
+import ge.tbcacad.data.models.petstore.response.PetImageUploadResponse;
 import ge.tbcacad.data.requestbody.petstore.PetstoreRequestBody;
 import ge.tbcacad.enums.StatusAvailability;
-import ge.tbcacad.models.petstore.response.AddNewPetResponse;
-import ge.tbcacad.models.petstore.response.PetImageUploadResponse;
 import ge.tbcacad.steps.petstore.PetstoreSteps;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
@@ -22,6 +24,7 @@ public class PetstoreTests {
     @BeforeTest
     public void setUp() {
         petstoreSteps = new PetstoreSteps();
+        RestAssured.filters(new AllureRestAssured());
     }
 
     @Test(priority = 1)

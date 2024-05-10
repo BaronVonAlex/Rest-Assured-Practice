@@ -1,6 +1,6 @@
 package ge.tbcacad.steps.petstore;
 
-import ge.tbcacad.models.petstore.request.AddNewPetRequest;
+import ge.tbcacad.data.models.petstore.request.AddNewPetRequest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

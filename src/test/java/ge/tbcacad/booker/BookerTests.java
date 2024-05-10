@@ -1,10 +1,12 @@
 package ge.tbcacad.booker;
 
+import ge.tbcacad.data.models.booker.request.BookerRequest;
+import ge.tbcacad.data.models.booker.response.BookerResponseOne;
+import ge.tbcacad.data.models.booker.response.Booking;
 import ge.tbcacad.data.requestbody.booker.BookerRequestBody;
-import ge.tbcacad.models.booker.request.BookerRequest;
-import ge.tbcacad.models.booker.response.BookerResponseOne;
-import ge.tbcacad.models.booker.response.Booking;
 import ge.tbcacad.steps.booker.BookerSteps;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeTest;
@@ -22,6 +24,7 @@ public class BookerTests {
     public void setUp() {
         bookerSteps = new BookerSteps();
         authToken = bookerSteps.createAuthToken(username, password);
+        RestAssured.filters(new AllureRestAssured());
     }
 
     @Test(priority = 1)

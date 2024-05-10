@@ -1,4 +1,4 @@
-package ge.tbcacad.models.petstore.response;
+package ge.tbcacad.data.models.petstore.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

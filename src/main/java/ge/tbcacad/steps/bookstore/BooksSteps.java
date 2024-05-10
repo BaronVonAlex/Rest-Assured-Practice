@@ -1,6 +1,6 @@
 package ge.tbcacad.steps.bookstore;
 
-import ge.tbcacad.models.bookstore.response.BookstoreResponse;
+import ge.tbcacad.data.models.bookstore.response.BookstoreResponse;
 import io.restassured.RestAssured;
 
 import static ge.tbcacad.data.constants.Constants.bookstoreBaseUrl;

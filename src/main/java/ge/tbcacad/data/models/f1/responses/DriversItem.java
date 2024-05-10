@@ -1,4 +1,4 @@
-package ge.tbcacad.models.f1;
+package ge.tbcacad.data.models.f1.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

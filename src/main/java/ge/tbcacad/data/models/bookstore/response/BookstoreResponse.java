@@ -1,4 +1,4 @@
-package ge.tbcacad.models.bookstore.response;
+package ge.tbcacad.data.models.bookstore.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
