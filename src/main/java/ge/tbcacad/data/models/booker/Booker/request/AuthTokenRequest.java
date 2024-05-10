@@ -1,4 +1,4 @@
-package ge.tbcacad.data.models.booker.request;
+package ge.tbcacad.data.models.booker.Booker.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

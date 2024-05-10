@@ -38,6 +38,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
+
     @Step
     public Response findPetsByStatus(String status) {
         return RestAssured.given()
@@ -50,6 +51,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
+
     @Step
     public Response findPetById(int id) {
         return RestAssured.given()
@@ -61,6 +63,7 @@ public class PetstoreSteps {
                 .extract()
                 .response();
     }
+
     @Step
     public Response uploadImage(int id) {
         File file = new File("9eb83d4058c144401c5ea2596e658dbf.png");

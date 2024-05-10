@@ -1,8 +1,8 @@
-package ge.tbcacad.data.models.booker.response;
+package ge.tbcacad.data.models.booker.Booker.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Booking {
+public class BookerRequest {
 
     @JsonProperty("firstname")
     private String firstname;
@@ -73,7 +73,7 @@ public class Booking {
     @Override
     public String toString() {
         return
-                "Booking{" +
+                "BookerRequest{" +
                         "firstname = '" + firstname + '\'' +
                         ",additionalneeds = '" + additionalneeds + '\'' +
                         ",bookingdates = '" + bookingdates + '\'' +

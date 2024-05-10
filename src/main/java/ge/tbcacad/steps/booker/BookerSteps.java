@@ -1,8 +1,8 @@
 package ge.tbcacad.steps.booker;
 
-import ge.tbcacad.data.models.booker.request.AuthTokenRequest;
-import ge.tbcacad.data.models.booker.request.BookerRequest;
-import ge.tbcacad.data.models.booker.response.AuthTokenResponse;
+import ge.tbcacad.data.models.booker.Booker.request.AuthTokenRequest;
+import ge.tbcacad.data.models.booker.Booker.request.BookerRequest;
+import ge.tbcacad.data.models.booker.Booker.response.AuthTokenResponse;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -30,6 +30,7 @@ public class BookerSteps {
                 .as(AuthTokenResponse.class)
                 .getToken();
     }
+
     @Step
     public Response partialUpdateBooking(int bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
@@ -44,6 +45,7 @@ public class BookerSteps {
                 .extract()
                 .response();
     }
+
     @Step
     public Response createBooking(BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
@@ -57,6 +59,7 @@ public class BookerSteps {
                 .statusCode(200)
                 .extract().response();
     }
+
     @Step
     public Response deleteBooking(long bookingId, String baseUrl, String authToken) {
         return RestAssured.given()

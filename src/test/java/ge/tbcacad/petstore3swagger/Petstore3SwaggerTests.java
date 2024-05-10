@@ -14,9 +14,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Petstore3SwaggerTests {
     protected static Petstore3Steps petstore3Steps;
-    
+
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         petstore3Steps = new Petstore3Steps();
         RestAssured.filters(new AllureRestAssured());
     }

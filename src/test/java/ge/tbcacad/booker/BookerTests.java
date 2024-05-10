@@ -1,8 +1,8 @@
 package ge.tbcacad.booker;
 
-import ge.tbcacad.data.models.booker.request.BookerRequest;
-import ge.tbcacad.data.models.booker.response.BookerResponseOne;
-import ge.tbcacad.data.models.booker.response.Booking;
+import ge.tbcacad.data.models.booker.Booker.request.BookerRequest;
+import ge.tbcacad.data.models.booker.Booker.response.BookerResponseOne;
+import ge.tbcacad.data.models.booker.Booker.response.Booking;
 import ge.tbcacad.data.requestbody.booker.BookerRequestBody;
 import ge.tbcacad.steps.booker.BookerSteps;
 import io.qameta.allure.restassured.AllureRestAssured;

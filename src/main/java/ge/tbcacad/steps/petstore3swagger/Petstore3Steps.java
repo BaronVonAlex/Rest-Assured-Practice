@@ -6,12 +6,11 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Petstore3Steps {
     @Step("Create Request body and make Post request (Order)")
-    public Response createOrderPostOrder(){
+    public Response createOrderPostOrder() {
         NewOrder orderBody = NewOrder.builder()
                 .id(8123L)
                 .petId(1231246L)
