@@ -23,7 +23,7 @@ public class BookstoreTests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test
+    @Test(description = "Make request to Bookstore and get all books, validate that each book has page value more than 1000.")
     public void allBooksWithinPageValue() {
         BookstoreResponse response = BooksSteps.getAllBooks();
 
@@ -32,7 +32,7 @@ public class BookstoreTests {
         });
     }
 
-    @Test
+    @Test(description = "Make request to Bookstore and get first two books, validate that they have appropriate authors by matching with predetermined data.")
     public void booksAuthors() {
         BookstoreResponse response = BooksSteps.getAllBooks();
 

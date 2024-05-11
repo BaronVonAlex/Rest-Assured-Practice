@@ -54,4 +54,7 @@ public class Constants {
     public static final Long ORDER_ID_EXP_VALUE = 8123L;
     public static final String ODER_DATE_EXP_VALUE = "2021-05-10T15:04:37.534";
     public static final int ORDER_QUANTITIY_EXP_VALUE = 0;
+    public static final String EXP_PET_NAME = "doggie";
+    public static final String EXP_PET_STATUS = "available";
+    public static final int EXP_PET_ID = 4314;
 }

@@ -21,7 +21,7 @@ public class SwapiTests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test
+    @Test(description = "Call Planet Swapi API to get all the planets, then get three most recent by creation date. Validate that First planet has appropriate values.")
     public void planetsTest() {
         Response response = SwapiSteps.getPlanets();
 
@@ -36,7 +36,7 @@ public class SwapiTests {
         assertThat(Planets[0].orbitalPeriod(), Matchers.hasToString(PLANET_ORB_PERIOD));
     }
 
-    @Test
+    @Test(description = "Call planet Swapi API, get planet with Highest Rotation speed, then console.log its' name and then redirect to first URL inside response. (Log everything from there)")
     public void getFirstPlanetByRotation() {
         Response response = SwapiSteps.getPlanets();
         ResultsItem topPlanetByRotation = SwapiSteps.getTopOneByRotation(response);

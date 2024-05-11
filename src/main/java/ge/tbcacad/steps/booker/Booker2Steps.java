@@ -39,7 +39,7 @@ public class Booker2Steps {
                 .response();
     }
 
-    @Step
+    @Step("Take Response and make Hamcrest Validation if status code is appropriate. (200)")
     public void checkStatusCode(Response response) {
         Assert.assertEquals(response.getStatusCode(), 200);
     }

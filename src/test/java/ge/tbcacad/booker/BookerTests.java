@@ -27,7 +27,7 @@ public class BookerTests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test(priority = 1)
+    @Test(priority = 1, description = "Make Request on Booker to create booking, Then Deserialize response and validate that Values match with predetermined data.")
     public void createBooking() {
         Response request = bookerSteps.createBooking(BookerRequestBody.createBooker(), bookerBaseUrl, authToken);
 
@@ -38,7 +38,7 @@ public class BookerTests {
         assertThat(booking.getFirstname(), Matchers.containsString(BOOKER_EXP_NAME));
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "Make Booking Update request and validate that response has proper status code. (201)")
     public void callBookingUpdate() {
         BookerRequest requestBody = BookerRequestBody.bookerRequestBody();
 
@@ -47,7 +47,7 @@ public class BookerTests {
         response.then().log().ifStatusCodeIsEqualTo(201);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 3, description = "Make Delete Request for existing booking, validate that response code is 200. After that deserialize with validate that values are empty.")
     public void deleteBooking() {
         System.out.println(authToken);
         Response response = bookerSteps.deleteBooking(bookingId, bookerBaseUrl, authToken);

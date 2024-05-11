@@ -11,7 +11,7 @@ import io.restassured.response.Response;
 import static ge.tbcacad.data.constants.Constants.bookerBaseUrl;
 
 public class BookerSteps {
-    @Step
+    @Step("Take Username and Password, after which create POST Request to booker and retrieve Auth. Token.")
     public String createAuthToken(String username, String password) {
         AuthTokenRequest requestBody = new AuthTokenRequest();
         requestBody.setUsername(username);
@@ -31,7 +31,7 @@ public class BookerSteps {
                 .getToken();
     }
 
-    @Step
+    @Step("Make PATCH (Partial Upadte) Request and retrieve response body.")
     public Response partialUpdateBooking(int bookingId, BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
@@ -46,7 +46,7 @@ public class BookerSteps {
                 .response();
     }
 
-    @Step
+    @Step("Create POST Request, make Booking and request body and return Response.")
     public Response createBooking(BookerRequest requestBody, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)
@@ -60,7 +60,7 @@ public class BookerSteps {
                 .extract().response();
     }
 
-    @Step
+    @Step("Crate DELETE request and delete existing booking with provided ID.")
     public Response deleteBooking(long bookingId, String baseUrl, String authToken) {
         return RestAssured.given()
                 .baseUri(baseUrl)

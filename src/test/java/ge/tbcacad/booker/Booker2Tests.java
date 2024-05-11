@@ -22,7 +22,8 @@ public class Booker2Tests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test(dataProviderClass = Booker2DataProvider.class, dataProvider = "bookingData")
+    @Test(dataProviderClass = Booker2DataProvider.class, dataProvider = "bookingData",
+            description = "Update already existing book on Booker, validate that status code is 200. Deserialize with BookingResponse class and console.log some values.")
     public void testName(BookingRequest bookingRequest) {
         Response response = booker2Steps.updateBooking(123, bookingRequest, bookerBaseUrl);
         booker2Steps.checkStatusCode(response);

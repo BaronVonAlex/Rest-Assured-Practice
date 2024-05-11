@@ -1,6 +1,9 @@
 package ge.tbcacad.petstore3swagger;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import ge.tbcacad.data.models.petstore3swagger.responses.OrderResponse;
+import ge.tbcacad.data.models.petstore3swagger.responses.PetResponse;
+import ge.tbcacad.data.requestbody.petstore.PetPostRequestBody;
 import ge.tbcacad.steps.petstore3swagger.Petstore3Steps;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
@@ -29,5 +32,17 @@ public class Petstore3SwaggerTests {
         assertThat(deserializedResponse.getId(), Matchers.is(ORDER_ID_EXP_VALUE));
         assertThat(deserializedResponse.getShipDate(), Matchers.hasToString(ODER_DATE_EXP_VALUE));
         assertThat(deserializedResponse.getQuantity(), Matchers.is(ORDER_QUANTITIY_EXP_VALUE));
+    }
+
+    @Test(description = "Create Post request to add body, with XML Ser/Deser. Make couple validations after getting response.")
+    public void postPetRequest() throws JsonProcessingException {
+        String xmlBody = PetPostRequestBody.postPetRequestBody();
+
+        Response response = petstore3Steps.createPostRequest(xmlBody);
+        PetResponse petResponse = response.as(PetResponse.class);
+
+        assertThat(petResponse.getName(), Matchers.hasToString(EXP_PET_NAME));
+        assertThat(petResponse.getId(), Matchers.is(EXP_PET_ID));
+        assertThat(petResponse.getStatus(), Matchers.hasToString(EXP_PET_STATUS));
     }
 }

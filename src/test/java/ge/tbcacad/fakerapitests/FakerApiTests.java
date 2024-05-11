@@ -16,7 +16,7 @@ public class FakerApiTests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test
+    @Test(description = "Create Call to FakerAPI, get response and after that make Schema validation.")
     public void jsonSchemaValidation() {
         Response response = fakerApiSteps.getFakerResponse();
         fakerApiSteps.validateJsonSchema(response);

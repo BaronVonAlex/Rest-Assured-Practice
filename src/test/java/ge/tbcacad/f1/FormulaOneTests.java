@@ -24,7 +24,7 @@ public class FormulaOneTests {
         RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test
+    @Test(description = "Get Response from F1 Website, get first driver object with path and make assertions with predetermined expectedDriver text.")
     public void f1Test() {
         Response response = f1Steps.getF1Drivers(ERGAST_URL);
 

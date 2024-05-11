@@ -31,4 +31,19 @@ public class Petstore3Steps {
                 .extract()
                 .response();
     }
+
+    @Step("Add new Pet with Post request, use XML Body")
+    public Response createPostRequest(String xmlBody) {
+        return RestAssured
+                .given()
+                .baseUri("https://petstore.swagger.io/v2")
+                .accept(ContentType.XML)
+                .contentType(ContentType.XML)
+                .body(xmlBody)
+                .when()
+                .post("/pet")
+                .then()
+                .extract()
+                .response();
+    }
 }

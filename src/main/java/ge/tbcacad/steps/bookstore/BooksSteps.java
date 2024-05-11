@@ -8,7 +8,7 @@ import static ge.tbcacad.data.constants.Constants.bookstoreBaseUrl;
 import static io.restassured.RestAssured.given;
 
 public class BooksSteps {
-    @Step
+    @Step("Make GET Reqeust to Bookstore and return deserialized response body.")
     public static BookstoreResponse getAllBooks() {
         RestAssured.baseURI = bookstoreBaseUrl;
         return given()

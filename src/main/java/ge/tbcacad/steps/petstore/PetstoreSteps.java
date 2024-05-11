@@ -11,7 +11,7 @@ import java.io.File;
 import static ge.tbcacad.data.constants.Constants.petstoreBaseUrl;
 
 public class PetstoreSteps {
-    @Step
+    @Step("Make POST Request to add new pet with Request Body.")
     public Response addNewPet(AddNewPetRequest requestBody) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -25,7 +25,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-    @Step
+    @Step("Make PUT Request to update existing pet with request body.")
     public Response updateExistingPet(AddNewPetRequest requestBody) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -39,7 +39,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-    @Step
+    @Step("Make GET Request to receive all the pets by status, passed Parameters Status (String).")
     public Response findPetsByStatus(String status) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -52,7 +52,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-    @Step
+    @Step("Make GET Request to find pets by ID, passed Parameters ID (int).")
     public Response findPetById(int id) {
         return RestAssured.given()
                 .baseUri(petstoreBaseUrl)
@@ -64,7 +64,7 @@ public class PetstoreSteps {
                 .response();
     }
 
-    @Step
+    @Step("Make POST Request to upload image on existing Pet, passed Parameters ID (int).")
     public Response uploadImage(int id) {
         File file = new File("9eb83d4058c144401c5ea2596e658dbf.png");
 

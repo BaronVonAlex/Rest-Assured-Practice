@@ -12,7 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SwapiSteps {
-    @Step
+    @Step("Make Get request to return response of all planets.")
     public Response getPlanets() {
         return RestAssured.given()
                 .baseUri("https://swapi.dev/api/planets/?format=json")
@@ -25,12 +25,12 @@ public class SwapiSteps {
                 .response();
     }
 
-    @Step
+    @Step("Take RestAssured Response and deserialize as Planet class.")
     public Planet getPlanet(Response response) {
         return response.as(Planet.class);
     }
 
-    @Step
+    @Step("Get ResultsItem list and with use of Comparator, return first three planets, else return nothing and notify error.")
     public ResultsItem[] getThreeMostRecent(Planet planets) {
         if (planets != null && planets.results() != null && !planets.results().isEmpty()) {
 
@@ -44,7 +44,7 @@ public class SwapiSteps {
         }
     }
 
-    @Step
+    @Step("Get list of planets and with use of loop, console log planet name and creation date.")
     public void printPlanetDetails(ResultsItem[] planets) {
         for (ResultsItem planet : planets) {
             System.out.println("Name: " + planet.name());
@@ -52,16 +52,16 @@ public class SwapiSteps {
         }
     }
 
-    @Step
+    @Step("Get response and return planet with highest rotation period by using Comparator.")
     public ResultsItem getTopOneByRotation(Response response) {
         Planet planet = getPlanet(response);
 
         return planet.results().stream()
                 .max(Comparator.comparing(ResultsItem::rotationPeriod))
-                .orElse(null); // Handle case where list is empty
+                .orElse(null);
     }
 
-    @Step
+    @Step("Get String list of Links from Response, and return First nun-null Link.")
     public String getFirstResidentLink(ResultsItem planet) {
         List<String> residentLinks = planet.residents();
 
@@ -72,7 +72,7 @@ public class SwapiSteps {
         }
     }
 
-    @Step
+    @Step("If URL Value is not empty, then redirect to it and console log response.")
     public void redirectToUrl(String url) {
         if (url != null) {
             Response response = RestAssured.given()
