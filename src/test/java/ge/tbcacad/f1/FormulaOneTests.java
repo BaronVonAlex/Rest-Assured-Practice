@@ -1,8 +1,10 @@
 package ge.tbcacad.f1;
 
+import ge.tbcacad.data.models.f1.responses.DriversItem;
 import ge.tbcacad.data.requestbody.f1driver.F1DriverBody;
-import ge.tbcacad.models.f1.DriversItem;
 import ge.tbcacad.steps.f1.F1Steps;
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
@@ -19,9 +21,10 @@ public class FormulaOneTests {
     @BeforeTest
     public void setUp() {
         f1Steps = new F1Steps();
+        RestAssured.filters(new AllureRestAssured());
     }
 
-    @Test
+    @Test(description = "Get Response from F1 Website, get first driver object with path and make assertions with predetermined expectedDriver text.")
     public void f1Test() {
         Response response = f1Steps.getF1Drivers(ERGAST_URL);
 

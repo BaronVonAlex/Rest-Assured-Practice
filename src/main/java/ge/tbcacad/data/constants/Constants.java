@@ -46,4 +46,15 @@ public class Constants {
     public static final String BOOK_ASRT_MSG_2 = " Has page value less than 1000.";
     public static final String BOOKER_EXP_NAME = "Sally";
     public static final String ERGAST_URL = "http://ergast.com";
+    public static final String PLANET_NAME = "Kamino";
+    public static final String PLANET_DIAMETER = "19720";
+    public static final String PLANET_GRAVITY = "1 standard";
+    public static final String PLANET_SUR_WATER = "100";
+    public static final String PLANET_ORB_PERIOD = "463";
+    public static final Long ORDER_ID_EXP_VALUE = 8123L;
+    public static final String ODER_DATE_EXP_VALUE = "2021-05-10T15:04:37.534";
+    public static final int ORDER_QUANTITIY_EXP_VALUE = 0;
+    public static final String EXP_PET_NAME = "doggie";
+    public static final String EXP_PET_STATUS = "available";
+    public static final int EXP_PET_ID = 4314;
 }

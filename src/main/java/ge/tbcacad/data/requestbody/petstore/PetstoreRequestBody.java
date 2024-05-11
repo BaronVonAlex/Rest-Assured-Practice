@@ -1,9 +1,9 @@
 package ge.tbcacad.data.requestbody.petstore;
 
 import com.github.javafaker.Faker;
-import ge.tbcacad.models.petstore.request.AddNewPetRequest;
-import ge.tbcacad.models.petstore.request.Category;
-import ge.tbcacad.models.petstore.request.TagsItem;
+import ge.tbcacad.data.models.petstore.request.AddNewPetRequest;
+import ge.tbcacad.data.models.petstore.request.Category;
+import ge.tbcacad.data.models.petstore.request.TagsItem;
 
 import java.util.ArrayList;
 import java.util.List;

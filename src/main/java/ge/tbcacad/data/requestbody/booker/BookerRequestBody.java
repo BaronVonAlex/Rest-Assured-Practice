@@ -1,7 +1,7 @@
 package ge.tbcacad.data.requestbody.booker;
 
-import ge.tbcacad.models.booker.request.BookerRequest;
-import ge.tbcacad.models.booker.request.Bookingdates;
+import ge.tbcacad.data.models.booker.Booker.request.BookerRequest;
+import ge.tbcacad.data.models.booker.Booker.request.Bookingdates;
 
 public class BookerRequestBody {
     public static BookerRequest bookerRequestBody() {

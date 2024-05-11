@@ -1,6 +1,6 @@
 package ge.tbcacad.data.requestbody.f1driver;
 
-import ge.tbcacad.models.f1.DriversItem;
+import ge.tbcacad.data.models.f1.responses.DriversItem;
 
 public class F1DriverBody {
     public static DriversItem createExpectedDriver() {
