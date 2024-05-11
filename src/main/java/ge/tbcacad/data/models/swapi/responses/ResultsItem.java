@@ -17,21 +17,21 @@ import java.util.List;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResultsItem {
-        private List<String> films;
-        private String edited;
-        @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        @JsonProperty("created")
-        private LocalDateTime created;
-        private String climate;
-        private String rotationPeriod;
-        private String url;
-        private String population;
-        private String orbitalPeriod;
-        private String surfaceWater;
-        private String diameter;
-        private String gravity;
-        private String name;
-        private List<String> residents;
-        private String terrain;
+    private List<String> films;
+    private String edited;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    @JsonProperty("created")
+    private LocalDateTime created;
+    private String climate;
+    private String rotationPeriod;
+    private String url;
+    private String population;
+    private String orbitalPeriod;
+    private String surfaceWater;
+    private String diameter;
+    private String gravity;
+    private String name;
+    private List<String> residents;
+    private String terrain;
 }
