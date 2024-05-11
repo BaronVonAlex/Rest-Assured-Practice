@@ -13,9 +13,24 @@ public class Booker2DataProvider {
         return new Object[][]{
                 {booker2Steps
                         .createBookingRequest
-                        ("John", "Doe", 500, true, "2024-01-01", "2024-01-10", "Extra pillows", null)},
+                        ("John",
+                                "Doe",
+                                500,
+                                true,
+                                "2024-02-07",
+                                "2024-09-16",
+                                "Extra pillows",
+                                null)},
                 {booker2Steps.
-                        createBookingRequest("Jane", "Doe", 1000, false, "2024-02-15", "2024-02-20", "Breakfast", null)}
+                        createBookingRequest
+                        ("Gorgi",
+                                "Awd",
+                                1000,
+                                false,
+                                "2021-02-15",
+                                "2022-04-21",
+                                "Breakfast",
+                                null)}
         };
     }
 }

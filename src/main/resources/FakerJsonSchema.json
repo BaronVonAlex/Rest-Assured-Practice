@@ -42,7 +42,7 @@
           "owner": {
             "type": "string",
             "minLength": 2,
-            "pattern": "^[a-zA-Z ]{2,}$"
+            "pattern": "^[a-zA-Z]{2,}$"
           }
         }
       }
