@@ -32,10 +32,10 @@ public class SwapiSteps {
 
     @Step("Get ResultsItem list and with use of Comparator, return first three planets, else return nothing and notify error.")
     public ResultsItem[] getThreeMostRecent(Planet planets) {
-        if (planets != null && planets.results() != null && !planets.results().isEmpty()) {
+        if (planets != null && planets.getResults() != null && !planets.getResults().isEmpty()) {
 
-            ResultsItem[] resultsItems = planets.results().toArray(new ResultsItem[0]);
-            Arrays.sort(resultsItems, Comparator.comparing(ResultsItem::created).reversed());
+            ResultsItem[] resultsItems = planets.getResults().toArray(new ResultsItem[0]);
+            Arrays.sort(resultsItems, Comparator.comparing(ResultsItem::getCreated).reversed());
 
             return Arrays.copyOf(resultsItems, Math.min(3, resultsItems.length));
         } else {
@@ -47,8 +47,8 @@ public class SwapiSteps {
     @Step("Get list of planets and with use of loop, console log planet name and creation date.")
     public void printPlanetDetails(ResultsItem[] planets) {
         for (ResultsItem planet : planets) {
-            System.out.println("Name: " + planet.name());
-            System.out.println("Creation Date: " + planet.created());
+            System.out.println("Name: " + planet.getName());
+            System.out.println("Creation Date: " + planet.getCreated());
         }
     }
 
@@ -56,14 +56,14 @@ public class SwapiSteps {
     public ResultsItem getTopOneByRotation(Response response) {
         Planet planet = getPlanet(response);
 
-        return planet.results().stream()
-                .max(Comparator.comparing(ResultsItem::rotationPeriod))
+        return planet.getResults().stream()
+                .max(Comparator.comparing(ResultsItem::getRotationPeriod))
                 .orElse(null);
     }
 
     @Step("Get String list of Links from Response, and return First nun-null Link.")
     public String getFirstResidentLink(ResultsItem planet) {
-        List<String> residentLinks = planet.residents();
+        List<String> residentLinks = planet.getResidents();
 
         if (residentLinks != null) {
             return residentLinks.get(0);

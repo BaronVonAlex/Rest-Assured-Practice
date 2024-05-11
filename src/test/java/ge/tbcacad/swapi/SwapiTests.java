@@ -29,11 +29,11 @@ public class SwapiTests {
 
         SwapiSteps.printPlanetDetails(Planets);
 
-        assertThat(Planets[0].name(), Matchers.hasToString(PLANET_NAME));
-        assertThat(Planets[0].diameter(), Matchers.hasToString(PLANET_DIAMETER));
-        assertThat(Planets[0].gravity(), Matchers.hasToString(PLANET_GRAVITY));
-        assertThat(Planets[0].surfaceWater(), Matchers.hasToString(PLANET_SUR_WATER));
-        assertThat(Planets[0].orbitalPeriod(), Matchers.hasToString(PLANET_ORB_PERIOD));
+        assertThat(Planets[0].getName(), Matchers.hasToString(PLANET_NAME));
+        assertThat(Planets[0].getDiameter(), Matchers.hasToString(PLANET_DIAMETER));
+        assertThat(Planets[0].getGravity(), Matchers.hasToString(PLANET_GRAVITY));
+        assertThat(Planets[0].getSurfaceWater(), Matchers.hasToString(PLANET_SUR_WATER));
+        assertThat(Planets[0].getOrbitalPeriod(), Matchers.hasToString(PLANET_ORB_PERIOD));
     }
 
     @Test(description = "Call planet Swapi API, get planet with Highest Rotation speed, then console.log its' name and then redirect to first URL inside response. (Log everything from there)")
@@ -41,7 +41,7 @@ public class SwapiTests {
         Response response = SwapiSteps.getPlanets();
         ResultsItem topPlanetByRotation = SwapiSteps.getTopOneByRotation(response);
 
-        System.out.println(topPlanetByRotation.name());
+        System.out.println(topPlanetByRotation.getName());
 
         SwapiSteps.redirectToUrl(SwapiSteps.getFirstResidentLink(topPlanetByRotation));
     }

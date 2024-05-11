@@ -1,21 +1,18 @@
 package ge.tbcacad.data.models.swapi.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public record Planet(
-
-        @JsonProperty("next")
-        String next,
-
-        @JsonProperty("previous")
-        Object previous,
-
-        @JsonProperty("count")
-        int count,
-
-        @JsonProperty("results")
-        List<ResultsItem> results
-) {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Planet {
+        private String next;
+        private Object previous;
+        private int count;
+        private List<ResultsItem> results;
 }
