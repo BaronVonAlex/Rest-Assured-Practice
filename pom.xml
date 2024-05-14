@@ -9,17 +9,30 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <hamcrest.version>1.3</hamcrest.version>
         <allure.rest.assured.version>2.25.0</allure.rest.assured.version>
         <json.version>20231013</json.version>
         <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
-        <aspectj.version>1.9.21</aspectj.version>
+        <aspectj.version>1.9.22</aspectj.version>
         <maven.surefire.plugin.version>3.2.3</maven.surefire.plugin.version>
         <allure.maven.version>2.12.0</allure.maven.version>
         <allure.testng.version>2.25.0</allure.testng.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <testng.version>7.10.1</testng.version>
+        <openapi-generator-maven-plugin.version>7.5.0</openapi-generator-maven-plugin.version>
+        <rest-assured.version>5.4.0</rest-assured.version>
+        <assertj-core.version>3.25.3</assertj-core.version>
+        <jackson-databind.version>2.17.0</jackson-databind.version>
+        <swagger-annotations.version>2.2.21</swagger-annotations.version>
+        <jakarta.annotation-api.version>3.0.0</jakarta.annotation-api.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <jackson-datatype-jsr310.version>2.17.0</jackson-datatype-jsr310.version>
+        <jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+        <commons-codec.version>1.16.1</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -101,13 +114,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JSON Dependency -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${json.version}</version>
-        </dependency>
-
         <!-- Allure TestNG Dependency -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
@@ -115,31 +121,17 @@
             <version>${allure.testng.version}</version>
         </dependency>
 
-        <!-- Allure Rest-assured Dependency-->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-rest-assured</artifactId>
-            <version>${allure.rest.assured.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.17.1</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
             <version>2.17.1</version>
         </dependency>
 
@@ -204,5 +196,136 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger-annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta.annotation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind-nullable.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.32</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!--                    <suiteXmlFiles>-->
+                    <!--                        <suiteXmlFile>TestNG.xml</suiteXmlFile>-->
+                    <!--                    </suiteXmlFiles>-->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-pet-store-v3-client-api-code</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.json</inputSpec>
+                            <invokerPackage>pet.store.v3.invoker</invokerPackage>
+                            <apiPackage>pet.store.v3.api</apiPackage>
+                            <modelPackage>pet.store.v3.model</modelPackage>
+                            <generatorName>java</generatorName>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>
+                                <identifierNamingConvention>original</identifierNamingConvention>
+                                <library>rest-assured</library>
+                                <serializationLibrary>jackson</serializationLibrary>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>spring-security-api-code</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/api-docs.yaml</inputSpec>
+                            <invokerPackage>spring.security.invoker</invokerPackage>
+                            <apiPackage>spring.security.api</apiPackage>
+                            <modelPackage>spring.security.model</modelPackage>
+                            <generatorName>java</generatorName>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <configOptions>
+                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>
+                                <identifierNamingConvention>original</identifierNamingConvention>
+                                <library>rest-assured</library>
+                                <serializationLibrary>jackson</serializationLibrary>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
