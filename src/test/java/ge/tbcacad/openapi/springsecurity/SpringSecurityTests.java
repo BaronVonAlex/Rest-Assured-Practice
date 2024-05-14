@@ -74,10 +74,10 @@ public class SpringSecurityTests {
 
         RefreshTokenResponse refreshTokenResponse = springSecuritySteps.getRefreshedTokenResponse(api, refreshTokenRequest);
 
-        String refreshedToken = refreshTokenResponse.getRefreshToken();
-
-        Response response = springSecuritySteps.getAuthorizationResponse(api, AUTHORIZATION, refreshedToken);
-
+        System.out.println(refreshTokenResponse.getTokenType());
+        // after refreshing token try to authorize again with old one.
+        Response response = springSecuritySteps.getAuthorizationResponse(api, AUTHORIZATION, accessToken);
+        // validate if we get same response as we got before refreshing.
         springSecuritySteps
                 .validateStatusCode(response, 200)
                 .validateBodyMessage(response, HELLO_MSG);

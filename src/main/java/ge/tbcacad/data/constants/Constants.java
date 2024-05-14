@@ -68,5 +68,5 @@ public class Constants {
 
     public static final String FIRST_NAME = "Baron";
     public static final String LAST_NAME = "Lastname";
-    public static final String EMAIL = "someGmail123123@gmail.com";
+    public static final String EMAIL = "so12312323123@gmail.com";
 }
