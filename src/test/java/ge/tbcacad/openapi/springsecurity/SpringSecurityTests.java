@@ -62,7 +62,7 @@ public class SpringSecurityTests {
 
     @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 3)
     public void authenticateTests(String firstName, String lastName, String email, String password) {
-        AuthenticationRequest authReq = springSecuritySteps.createAuthenticateReqBody(EMAIL, password);
+        AuthenticationRequest authReq = springSecuritySteps.createAuthenticateReqBody(email, password);
 
         AuthenticationResponse authRes = springSecuritySteps.getAuthenticationResponse(api, authReq);
         springSecuritySteps.validateTokenRoles(authRes);
