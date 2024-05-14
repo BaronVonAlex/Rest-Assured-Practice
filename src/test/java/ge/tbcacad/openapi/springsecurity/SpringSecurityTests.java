@@ -35,12 +35,12 @@ public class SpringSecurityTests {
     }
 
     @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 1)
-    public void authenticationTests(String password) {
+    public void authenticationTests(String firstName, String lastName, String email, String password) {
         RegisterRequest authRegRequest = springSecuritySteps
                 .createAuthRegBody(
-                        FIRST_NAME,
-                        LAST_NAME,
-                        EMAIL,
+                        firstName,
+                        lastName,
+                        email,
                         password,
                         RegisterRequest.RoleEnum.ADMIN
                 );
@@ -61,7 +61,7 @@ public class SpringSecurityTests {
     }
 
     @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 3)
-    public void authenticateTests(String password) {
+    public void authenticateTests(String firstName, String lastName, String email, String password) {
         AuthenticationRequest authReq = springSecuritySteps.createAuthenticateReqBody(EMAIL, password);
 
         AuthenticationResponse authRes = springSecuritySteps.getAuthenticationResponse(api, authReq);

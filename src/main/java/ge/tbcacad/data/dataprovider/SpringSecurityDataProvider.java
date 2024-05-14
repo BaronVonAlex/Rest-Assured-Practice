@@ -8,17 +8,23 @@ public class SpringSecurityDataProvider {
 
     private static final Faker faker = new Faker();
 
-    @DataProvider(name = "PasswordDP")
-    public static Object[][] passwords() {
-        return new Object[][]{
-                {faker.lorem().characters(7).toLowerCase()},
-                {faker.lorem().characters(7).toUpperCase()},
-                {faker.numerify("########")},
-                {RandCharGen.generateRandomSpecialChars(7)},
-                {"a"},
-                {"1"},
-                {" "},
-                {"P@ssw0rd"} // passes test
+    private static final Object[][] data;
+
+    static {
+        data = new Object[][]{
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.lorem().characters(7).toLowerCase()},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.lorem().characters(7).toUpperCase()},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.numerify("########")},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), RandCharGen.generateRandomSpecialChars(7)},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), "a"},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), "1"},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), " "},
+                {faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), "P@ssw0rd"} // passes test
         };
+    }
+
+    @DataProvider(name = "PasswordDP")
+    public static Object[][] authenticationData() {
+        return data;
     }
 }
