@@ -34,7 +34,7 @@ public class SpringSecurityTests {
                         .setBaseUri(LOCAL_HOST_BASE_URI)));
     }
 
-    @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 1)
+    @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 1, description = "Create Authentication request and retrieve Access Token from response.")
     public void authenticationTests(String firstName, String lastName, String email, String password) {
         RegisterRequest authRegRequest = springSecuritySteps
                 .createAuthRegBody(
@@ -51,7 +51,7 @@ public class SpringSecurityTests {
         accessToken = springSecuritySteps.extractAccessToken(authRes, 200);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, description = "Create Authorization request, then validate that we get proper SC and body response message.")
     public void authorizationTests() {
         Response response = springSecuritySteps.getAuthorizationResponse(api, AUTHORIZATION, accessToken);
 
@@ -60,7 +60,7 @@ public class SpringSecurityTests {
                 .validateBodyMessage(response, HELLO_MSG);
     }
 
-    @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 3)
+    @Test(dataProviderClass = SpringSecurityDataProvider.class, dataProvider = "PasswordDP", priority = 3, description = "Authenticate with Already registered Email and Passowrd, validate if we get proper roles.")
     public void authenticateTests(String firstName, String lastName, String email, String password) {
         AuthenticationRequest authReq = springSecuritySteps.createAuthenticateReqBody(email, password);
 
@@ -68,7 +68,7 @@ public class SpringSecurityTests {
         springSecuritySteps.validateTokenRoles(authRes);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 4, description = "Create RefreshToken Request with Old Access token and retrieve response, after which check if old Access token still returns same response from Auth Request.")
     public void refreshTokenTest() {
         RefreshTokenRequest refreshTokenRequest = springSecuritySteps.refreshTokenRequest(accessToken);
 
