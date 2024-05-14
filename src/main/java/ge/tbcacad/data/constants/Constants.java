@@ -24,12 +24,12 @@ public class Constants {
     public static final String password = "password123";
 
     public static final String AVAILABLE_STATUS = "available";
-    public static final String CATEGORY_ID = "category.id";
-    public static final String CATEGORY_NAME = "category.name";
-    public static final String PET_NAME = "name";
-    public static final String PHOTO_URLS = "photoUrls";
-    public static final String TAGS_ID = "tags.id";
-    public static final String TAGS_NAME = "tags.name";
+    public static final Long CATEGORY_ID = 25L;
+    public static final String CATEGORY_NAME = "Dog";
+    public static final String PET_NAME = "Rocky";
+    public static final String PHOTO_URLS = "https://random.web.link";
+    public static final Long TAGS_ID = 35L;
+    public static final String TAGS_NAME = "Animal";
     public static final String STATUS = "status";
     public static final String BOOK_PAGES = "books.pages";
     public static final String ID = "id";
@@ -57,4 +57,16 @@ public class Constants {
     public static final String EXP_PET_NAME = "doggie";
     public static final String EXP_PET_STATUS = "available";
     public static final int EXP_PET_ID = 4314;
+
+    public static final String PETSTORE_BASE_URI = "https://petstore3.swagger.io/api/v3/";
+
+    public static final Long PET_ID = 15L;
+    public static final String LOCAL_HOST_BASE_URI = "http://localhost:8086";
+    public static final String HELLO_MSG = "Hello, you have access to a protected resource that requires admin role and read authority";
+
+    public static final String AUTHORIZATION = "Authorization";
+
+    public static final String FIRST_NAME = "Baron";
+    public static final String LAST_NAME = "Lastname";
+    public static final String EMAIL = "someGmail123123@gmail.com";
 }

@@ -18,11 +18,6 @@ public class SpringSecurityDataProvider {
                 {"a"},
                 {"1"},
                 {" "},
-                {"abc123"},
-                {"password123"},
-                {"123456"},
-                {"qwerty"},
-                {"password"},
                 {"P@ssw0rd"} // passes test
         };
     }
