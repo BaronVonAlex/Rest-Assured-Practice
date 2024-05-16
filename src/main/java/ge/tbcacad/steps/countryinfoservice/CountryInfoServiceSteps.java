@@ -10,6 +10,7 @@ import org.hamcrest.Matchers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.matchesPattern;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
@@ -47,28 +48,28 @@ public class CountryInfoServiceSteps {
     public CountryInfoServiceSteps nodeValuesValidation() {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
         List<String> expectedSNames = List.of("Africa", "Antarctica", "Asia", "Europe", "Ocenania", "The Americas");
-        MatcherAssert.assertThat(sNames, containsInAnyOrder(expectedSNames.toArray()));
+        assertThat(sNames, containsInAnyOrder(expectedSNames.toArray()));
         return this;
     }
 
     @Step("Validate `sName` node result with value of `sCode` equals to `AN`")
     public CountryInfoServiceSteps validateIfsNameHasProperValue() {
         String sNameForAN = xmlPath.getString("ArrayOftContinent.tContinent.find { it.sCode == 'AN' }.sName");
-        assertEquals("Antarctica", sNameForAN);
+        assertThat(sNameForAN, Matchers.is("Antarctica"));
         return this;
     }
 
     @Step("Validate the last `tContinent` node's `sName` value")
     public CountryInfoServiceSteps validateContinentNodeValues() {
         String lastSName = xmlPath.getString("ArrayOftContinent.tContinent[-1].sName");
-        assertEquals("The Americas", lastSName);
+        assertThat(lastSName, Matchers.is("The Americas"));
         return this;
     }
 
     @Step("Verify that each `sName` is unique")
     public CountryInfoServiceSteps checkIfEachSNameIsUnique() {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
-        MatcherAssert.assertThat(sNames, containsInAnyOrder(sNames.stream().distinct().toArray(String[]::new)));
+        assertThat(sNames, containsInAnyOrder(sNames.stream().distinct().toArray(String[]::new)));
         return this;
     }
 
@@ -78,8 +79,8 @@ public class CountryInfoServiceSteps {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
 
         for (int i = 0; i < sCodes.size(); i++) {
-            MatcherAssert.assertThat(sCodes.get(i), matchesPattern("^[A-Z]{2}$"));
-            MatcherAssert.assertThat(sNames.get(i), not(matchesPattern(".*\\d.*")));
+            assertThat(sCodes.get(i), matchesPattern("^[A-Z]{2}$"));
+            assertThat(sNames.get(i), not(matchesPattern(".*\\d.*")));
         }
         return this;
     }
@@ -88,7 +89,7 @@ public class CountryInfoServiceSteps {
     public CountryInfoServiceSteps validateIfAlphabetical() {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
         List<String> sortedSNames = sNames.stream().sorted().toList();
-        MatcherAssert.assertThat(sNames, containsInRelativeOrder(sortedSNames.toArray()));
+        assertThat(sNames, containsInRelativeOrder(sortedSNames.toArray()));
         return this;
     }
 
@@ -96,8 +97,8 @@ public class CountryInfoServiceSteps {
     public CountryInfoServiceSteps validateIfAll6ContinentsArePresent() {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
         List<String> expectedSNames = List.of("Africa", "Antarctica", "Asia", "Europe", "Ocenania", "The Americas");
-        MatcherAssert.assertThat(sNames, hasSize(6));
-        MatcherAssert.assertThat(sNames, containsInAnyOrder(expectedSNames.toArray()));
+        assertThat(sNames, hasSize(6));
+        assertThat(sNames, containsInAnyOrder(expectedSNames.toArray()));
         return this;
     }
 
@@ -105,7 +106,7 @@ public class CountryInfoServiceSteps {
     public CountryInfoServiceSteps checkIfNameDoNotContainDigits() {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
         for (String sName : sNames) {
-            MatcherAssert.assertThat(sName, not(matchesPattern(".*\\d.*")));
+            assertThat(sName, not(matchesPattern(".*\\d.*")));
         }
         return this;
     }
@@ -113,7 +114,7 @@ public class CountryInfoServiceSteps {
     @Step("Find `sCode` that starts with `O` and ensure that is `Ocenania`")
     public CountryInfoServiceSteps findSCodeOandValidateIfOceania() {
         String sNameForOC = xmlPath.getString("ArrayOftContinent.tContinent.find { it.sCode == 'OC' }.sName");
-        assertEquals("Ocenania", sNameForOC);
+        assertThat(sNameForOC, Matchers.is("Ocenania"));
         return this;
     }
 
@@ -123,7 +124,7 @@ public class CountryInfoServiceSteps {
         List<String> filteredSNames = sNames.stream()
                 .filter(sName -> sName.startsWith("A") && sName.endsWith("ca"))
                 .collect(Collectors.toList());
-        MatcherAssert.assertThat(filteredSNames, Matchers.containsInAnyOrder("Africa", "Antarctica"));
+        assertThat(filteredSNames, Matchers.containsInAnyOrder("Africa", "Antarctica"));
         return this;
     }
 }
