@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 
 import java.util.List;
