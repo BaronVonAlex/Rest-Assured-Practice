@@ -69,4 +69,20 @@ public class Constants {
     public static final String FIRST_NAME = "Baron";
     public static final String LAST_NAME = "Lastname";
     public static final String EMAIL = "so12312323123@gmail.com";
+
+    public static final String CONTENT_ADDITION_SUCCESS_MSG = "Content Added Successfully";
+    public static final String CONTENT_UPDATE_SUCCESS_MSG = "Content Updated Successfully";
+    public static final String CONTENT_DELETION_SUCCESS_MSG = "Content Deleted Successfully";
+    public static final String EMPLOYEE_NAME_INITIAL = "Alex";
+    public static final int EMPLOYEE_ID_INITIAL = 15;
+    public static final String EMPLOYEE_PHONE_INITIAL = "587412631";
+    public static final String EMPLOYEE_BIRTHDAY_INITIAL = "2003-04-23";
+    public static final String EMPLOYEE_DEPARTMENT_INITIAL = "IT Department";
+
+    public static final String EMPLOYEE_NAME_UPDATED = "David";
+    public static final String EMPLOYEE_PHONE_UPDATED = "598947501";
+    public static final String EMPLOYEE_BIRTHDAY_UPDATED = "2001-09-12";
+    public static final String EMPLOYEE_DEPARTMENT_UPDATED = "Management Department";
+
+    public static final int EXPECTED_STATUS_CODE = 500;
 }
