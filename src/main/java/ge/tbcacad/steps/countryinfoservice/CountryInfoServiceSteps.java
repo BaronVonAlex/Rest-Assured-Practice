@@ -37,9 +37,9 @@ public class CountryInfoServiceSteps {
     }
 
     @Step("Get list of Continent names and validate that their size is 6")
-    public CountryInfoServiceSteps countValidation() {
+    public CountryInfoServiceSteps countValidation(int sNodeCount) {
         List<String> sNames = xmlPath.getList("ArrayOftContinent.tContinent.sName");
-        assertEquals(6, sNames.size(), "Count of all `sName` nodes");
+        assertEquals(sNodeCount, sNames.size(), "Count of all `sName` nodes");
         return this;
     }
 

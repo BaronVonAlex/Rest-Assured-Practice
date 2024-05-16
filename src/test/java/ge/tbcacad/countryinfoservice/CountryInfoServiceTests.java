@@ -8,8 +8,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-@Epic(value = "Country Info Services")
-@Feature(value = "Continents Information")
+@Epic("Country Info Services")
+@Feature("Continents Information")
 public class CountryInfoServiceTests {
 
     protected static CountryInfoServiceSteps countryInfoServiceSteps;
@@ -21,13 +21,13 @@ public class CountryInfoServiceTests {
     }
 
     @Test(description = "Validate various aspects of the ListOfContinentsByName service")
-    @Story(value = "Service Response Validation")
+    @Story("Service Response Validation")
     @Severity(SeverityLevel.CRITICAL)
     @Link(name = "Service Documentation", url = "http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso")
     public void countryInfoServiceValidations() {
         countryInfoServiceSteps
                 .getListOfContinentsByName()
-                .countValidation()
+                .countValidation(6)
                 .nodeValuesValidation()
                 .validateIfsNameHasProperValue()
                 .validateContinentNodeValues()

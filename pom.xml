@@ -170,13 +170,13 @@
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>3.0.0</version>
+            <version>4.0.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-core</artifactId>
-            <version>3.0.0</version>
+            <version>4.0.5</version>
         </dependency>
 
         <dependency>
@@ -231,6 +231,12 @@
             <artifactId>jakarta.xml.ws-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.sun.xml.messaging.saaj</groupId>
+            <artifactId>saaj-impl</artifactId>
+            <version>3.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -278,60 +284,60 @@
                 </dependencies>
             </plugin>
 
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>${openapi-generator-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-pet-store-v3-client-api-code</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi.json</inputSpec>
-                            <invokerPackage>pet.store.v3.invoker</invokerPackage>
-                            <apiPackage>pet.store.v3.api</apiPackage>
-                            <modelPackage>pet.store.v3.model</modelPackage>
-                            <generatorName>java</generatorName>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelTests>false</generateModelTests>
-                            <configOptions>
-                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>
-                                <identifierNamingConvention>original</identifierNamingConvention>
-                                <library>rest-assured</library>
-                                <serializationLibrary>jackson</serializationLibrary>
-                                <useJakartaEe>true</useJakartaEe>
-                            </configOptions>
-                        </configuration>
-                    </execution>
+<!--            <plugin>-->
+<!--                <groupId>org.openapitools</groupId>-->
+<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--                <version>${openapi-generator-maven-plugin.version}</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>generate-pet-store-v3-client-api-code</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>${project.basedir}/src/main/resources/openapi.json</inputSpec>-->
+<!--                            <invokerPackage>pet.store.v3.invoker</invokerPackage>-->
+<!--                            <apiPackage>pet.store.v3.api</apiPackage>-->
+<!--                            <modelPackage>pet.store.v3.model</modelPackage>-->
+<!--                            <generatorName>java</generatorName>-->
+<!--                            <generateApiTests>false</generateApiTests>-->
+<!--                            <generateModelTests>false</generateModelTests>-->
+<!--                            <configOptions>-->
+<!--                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>-->
+<!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
+<!--                                <library>rest-assured</library>-->
+<!--                                <serializationLibrary>jackson</serializationLibrary>-->
+<!--                                <useJakartaEe>true</useJakartaEe>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
 
-                    <execution>
-                        <id>spring-security-api-code</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/api-docs.yaml</inputSpec>
-                            <invokerPackage>spring.security.invoker</invokerPackage>
-                            <apiPackage>spring.security.api</apiPackage>
-                            <modelPackage>spring.security.model</modelPackage>
-                            <generatorName>java</generatorName>
-                            <generateApiTests>false</generateApiTests>
-                            <generateModelTests>false</generateModelTests>
-                            <configOptions>
-                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>
-                                <identifierNamingConvention>original</identifierNamingConvention>
-                                <library>rest-assured</library>
-                                <serializationLibrary>jackson</serializationLibrary>
-                                <useJakartaEe>true</useJakartaEe>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--                    <execution>-->
+<!--                        <id>spring-security-api-code</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>generate-sources</phase>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>${project.basedir}/src/main/resources/api-docs.yaml</inputSpec>-->
+<!--                            <invokerPackage>spring.security.invoker</invokerPackage>-->
+<!--                            <apiPackage>spring.security.api</apiPackage>-->
+<!--                            <modelPackage>spring.security.model</modelPackage>-->
+<!--                            <generatorName>java</generatorName>-->
+<!--                            <generateApiTests>false</generateApiTests>-->
+<!--                            <generateModelTests>false</generateModelTests>-->
+<!--                            <configOptions>-->
+<!--                                <additionalModelTypeAnnotations>@lombok.Data;@lombok.experimental.Accessors(chain = true, fluent = true)</additionalModelTypeAnnotations>-->
+<!--                                <identifierNamingConvention>original</identifierNamingConvention>-->
+<!--                                <library>rest-assured</library>-->
+<!--                                <serializationLibrary>jackson</serializationLibrary>-->
+<!--                                <useJakartaEe>true</useJakartaEe>-->
+<!--                            </configOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.cxf</groupId>
@@ -345,7 +351,7 @@
                             <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/someService.wsdl</wsdl>
+                                    <wsdl>${project.basedir}/src/main/resources/employees.wsdl</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
