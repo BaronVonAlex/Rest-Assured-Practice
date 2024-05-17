@@ -3,21 +3,25 @@ package ge.tbcacad.util;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
+import org.w3c.dom.Document;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamResult;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
-public class MarshallSoapRequestUtil {
+public class MarshallingUtil {
     public static <T> String marshallSoapRequest(T object) {
         try {
             MessageFactory messageFactory = MessageFactory.newInstance();
@@ -41,6 +45,19 @@ public class MarshallSoapRequestUtil {
 
             return output.toString(StandardCharsets.UTF_8);
         } catch (JAXBException | SOAPException | TransformerException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> T unmarshallResponse(String response, Class<T> object) {
+        try {
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(response.getBytes(StandardCharsets.UTF_8));
+            SOAPMessage message = MessageFactory.newInstance().createMessage(null, byteArrayInputStream);
+            Document document = message.getSOAPBody().extractContentAsDocument();
+            Unmarshaller unmarshaller = JAXBContext.newInstance(object).createUnmarshaller();
+            Object unmarshal = unmarshaller.unmarshal(document);
+            return object.cast(unmarshal);
+        } catch (SOAPException | JAXBException | IOException e) {
             throw new RuntimeException(e);
         }
     }

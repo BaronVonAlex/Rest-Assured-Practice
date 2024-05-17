@@ -348,10 +348,14 @@
                         <id>generate-sources</id>
                         <phase>generate-sources</phase>
                         <configuration>
+                            <additionalJvmArgs>-Djavax.xml.accessExternalDTD=all -Djavax.xml.accessExternalSchema=all</additionalJvmArgs>
                             <sourceRoot>${project.build.directory}/generated-sources</sourceRoot>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${project.basedir}/src/main/resources/employees.wsdl</wsdl>
+                                    <wsdl>${project.basedir}/src/main/resources/tempuri.wsdl</wsdl>
+                                    <bindingFiles>
+                                        <bindingFile>http://www.w3.org/2001/XMLSchema.xsd</bindingFile>
+                                    </bindingFiles>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
