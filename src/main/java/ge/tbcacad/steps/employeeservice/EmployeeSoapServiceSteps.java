@@ -1,7 +1,7 @@
 package ge.tbcacad.steps.employeeservice;
 
 import com.example.springboot.soap.interfaces.*;
-import ge.tbcacad.util.MarshallSoapRequestUtil;
+import ge.tbcacad.util.MarshallingUtil;
 import ge.tbcacad.util.XmlDateUtil;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
@@ -73,7 +73,7 @@ public class EmployeeSoapServiceSteps {
     @Step("Add employee")
     public Response addEmployee() {
         addEmployeeRequest.setEmployeeInfo(employeeInfo);
-        String body = MarshallSoapRequestUtil.marshallSoapRequest(addEmployeeRequest);
+        String body = MarshallingUtil.marshallSoapRequest(addEmployeeRequest);
 
         return given()
                 .header("Content-Type", "text/xml; charset=utf-8")
@@ -98,7 +98,7 @@ public class EmployeeSoapServiceSteps {
 
     @Step("Send GetEmployeeById request")
     public Response getEmployeeByIdRequest() {
-        String body = MarshallSoapRequestUtil.marshallSoapRequest(getEmployeeByIdRequest);
+        String body = MarshallingUtil.marshallSoapRequest(getEmployeeByIdRequest);
 
         return given()
                 .header("Content-Type", "text/xml; charset=utf-8")
@@ -167,7 +167,7 @@ public class EmployeeSoapServiceSteps {
     @Step("Update Employee")
     public Response updateEmployee() {
         updateEmployeeRequest.setEmployeeInfo(employeeInfo);
-        String body = MarshallSoapRequestUtil.marshallSoapRequest(updateEmployeeRequest);
+        String body = MarshallingUtil.marshallSoapRequest(updateEmployeeRequest);
 
         return given()
                 .header("Content-Type", "text/xml; charset=utf-8")
@@ -192,7 +192,7 @@ public class EmployeeSoapServiceSteps {
 
     @Step("Send Employee Deletion Request")
     public Response deleteEmployee() {
-        String body = MarshallSoapRequestUtil.marshallSoapRequest(deleteEmployeeRequest);
+        String body = MarshallingUtil.marshallSoapRequest(deleteEmployeeRequest);
 
         return given()
                 .header("Content-type", "text/xml; charset=utf-8")

@@ -85,4 +85,11 @@ public class Constants {
     public static final String EMPLOYEE_DEPARTMENT_UPDATED = "Management Department";
 
     public static final int EXPECTED_STATUS_CODE = 500;
+
+    public static final String TEMPURI_USER_ID = "10";
+    public static final String TEMPURI_USER_NAME_EXP = "Xavier,Joe I.";
+    public static final String TEMPURI_USER_SSN_EXP = "640-94-6892";
+    public static final int TEMPURI_SSN_LENGTH = 11;
+    public static final String TEMPURI_USER_DOB = "2013-12-12";
+    public static final String TEMPURI_USER_LASTNAME = "Joe I.";
 }
